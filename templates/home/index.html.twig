@@ -13,7 +13,7 @@
           <p class="card-text">{{ gite.address }}</p>
           <p class="card-text">{{ gite.priceHightSeason }}</p>
           <p class="card-text">{{ gite.priceLowSeason }}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="{{ path('gite.show',{'id': gite.id}) }}" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     {% endfor %}
