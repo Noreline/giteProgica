@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\GiteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GiteRepository::class)
@@ -19,43 +20,65 @@ class Gite
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $address;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $superficy;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $bedroom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $nbBed;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank()
      */
     private $animals;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
      */
     private $priceAnimals;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
      */
     private $priceHightSeason;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank()
      */
     private $priceLowSeason;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5,max=40, minMessage="Nom trop court",maxMessage="Nom trop long")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=100,max=500, minMessage="Description trop courte",maxMessage="Description trop longue")
+     */
+    private $descript;
 
     public function getId(): ?int
     {
@@ -154,6 +177,30 @@ class Gite
     public function setPriceLowSeason(float $priceLowSeason): self
     {
         $this->priceLowSeason = $priceLowSeason;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescript(): ?string
+    {
+        return $this->descript;
+    }
+
+    public function setDescript(string $descript): self
+    {
+        $this->descript = $descript;
 
         return $this;
     }

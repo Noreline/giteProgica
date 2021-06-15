@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Nouveau gîtes
+{% endblock %}
+
+{% block body %}
+    <section class="row">
+        <h1>Ajouter un gîte PROGICA</h1>
+    </section>
+
+    <section class="row">
+        <article class="col-4"></article>
+        <article class="col-4">
+            {{ form_start(formGite) }}
+            {# {{ form_rest(formGite) }} #}
+            <article class="row">
+                <div class="col-md-6">
+                    {{ form_row(formGite.name)}}
+                </div>
+            </article>
+            <article class="row">
+                <div class="col-md-6">
+                    {{ form_row(formGite.address)}}
+                </div>
+            </article>
+            <article class="row">
+                <div class="col-md-6">
+                    {{ form_row(formGite.descript)}}
+
+                </div>
+            </article>
+
+            <article class="row">
+                <div class="col-md-3">{{ form_row(formGite.priceHightSeason)}}</div>
+                <div class="col-md-3">{{ form_row(formGite.priceLowSeason)}}</div>
+            </article>
+
+            <article class="row">
+                <div class="col-md-4">
+                    {{ form_row(formGite.animals)}}
+                    {{ form_row(formGite.priceAnimals)}}
+                </div>
+            </article>
+
+            <article class="row">
+                <div class="col-md-4">{{ form_row(formGite.superficy)}}</div>
+                <div class="col-md-4">{{ form_row(formGite.bedroom)}}</div>
+                <div class="col-md-4">{{ form_row(formGite.nbBed)}}</div>
+            </article>
+            <input type="submit" value="Créer" class="btn btn-secondary">
+            {{ form_end(formGite) }}
+        </article>
+    </section>
+{% endblock %}
