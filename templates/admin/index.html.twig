@@ -6,6 +6,12 @@
 
 {% block body %}
     administration des gites PROGICA
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
             
     <section class="row">
         <a href="{{ path ("admin.new") }}" class="btn btn-warning col-1">Ajouter</a>
@@ -21,7 +27,12 @@
                     <td>#{{ gite.id }}</td>
                     <td>{{ gite.name}}</td>
                     <td>
-                        <a href="" class = "btn btn-primary">éditer</a>
+                        <a href="{{path('admin.edit', {'id': gite.id }) }}" class = "btn btn-primary">éditer</a>
+                        <form method="post" action="{{ path('admin.delete', {'id': gite.id})}}" style="display: inline-block" onsubmit="return confirm ('Etes-vous sûr de vouloir supprimer ce gîte ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete'~ gite.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}

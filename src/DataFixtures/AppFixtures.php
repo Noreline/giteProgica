@@ -19,10 +19,12 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
+        $faker = Factory::create('fr_FR');
+        
         // $product = new Product();
         // $manager->persist($product);
         for ($i=0; $i < 3; $i++) { 
-            $faker = Factory::create('fr_FR');
+           
             $gite[$i] = new Gite();
             $gite[$i]->setAddress($faker->address());
             $gite[$i]->setSuperficy($faker->numberBetween(60, 180));
@@ -37,6 +39,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($gite[$i]);
         }
+
 
         $user1 = new User();
         $user1->setUsername('admin01')
