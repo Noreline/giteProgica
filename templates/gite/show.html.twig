@@ -2,6 +2,54 @@
 
 {% block title %}Le gite{% endblock %}
 {% block body %}
-    <h1>le gîte</h1>
-    <p>Le gite ce trouve à l'adresse : {{ gite.address }}</p>
+    
+<div class="row">
+    <h1>le gîte "{{gite.name}}"</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>Description</th>
+                    <td>{{gite.descript}}</td>
+                </tr>
+                <tr>
+                    <th>Adresse</th>
+                    <td>{{ gite.address }}</td>
+                </tr>
+                <tr>
+                    <th>Surface</th>
+                    <td>{{gite.superficy}} m²</td>
+                </tr>
+                <tr>
+                    <th>Nombre de chambre</th>
+                    <td>{{gite.bedroom}} chambre(s)</td>
+                </tr>
+                <tr>
+                    <th>Nombre de lits</th>
+                    <td>{{gite.nbBed}} lit(s)</td>
+                </tr>
+                <tr>
+                    <th>Equipements</th>
+                    <td>
+                        {% for eq in gite.equipements %}
+                            <li>{{ eq.name }}</li>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Tarif basse saison </th>
+                    <td>{{gite.priceLowSeason}} €</td>
+                </tr>
+                <tr>
+                    <th>Tarif haute saison</th>
+                    <td>{{gite.priceHightSeason}} €</td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

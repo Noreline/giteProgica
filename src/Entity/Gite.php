@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\GiteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GiteRepository::class)
+ * @UniqueEntity("name")
  */
 class Gite
 {
@@ -26,7 +30,7 @@ class Gite
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
+     * @Assert\Range(min=10, max=600) 
      */
     private $superficy;
 
@@ -79,6 +83,16 @@ class Gite
      * @Assert\Length(min=100,max=500, minMessage="Description trop courte",maxMessage="Description trop longue")
      */
     private $descript;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Equipement::class, inversedBy="gites")
+     */
+    private $equipements;
+
+    public function __construct()
+    {
+        $this->equipements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -201,6 +215,30 @@ class Gite
     public function setDescript(string $descript): self
     {
         $this->descript = $descript;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): self
+    {
+        $this->equipements->removeElement($equipement);
 
         return $this;
     }
