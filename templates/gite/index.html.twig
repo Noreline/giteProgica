@@ -7,9 +7,12 @@
 <section class="row">
     {% for gite in gites %}
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+      {% if gite.filename %}
+        <img src="{{ vich_uploader_asset(gite,'imageFile') }}" class="card-img-top" alt="...">
+        {% endif %}  
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          
+          <h5 class="card-title">{{ form_row(formGite.name)}}</h5>
           <p class="card-text">{{ gite.address }}</p>
           <p class="card-text">{{ gite.priceHightSeason }}</p>
           <p class="card-text">{{ gite.priceLowSeason }}</p>
