@@ -11,3 +11,13 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+let btnContact = document.getElementById('contact');
+let formContact = document.getElementById('contactForm');
+
+
+btnContact.addEventListener('click', e =>{
+    e.preventDefault;
+    //console.log('test');
+    formContact.style.display = "block";
+});

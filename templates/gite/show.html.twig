@@ -8,7 +8,9 @@
 </div>
 <div class="col-md-8">
     {% if gite.filename %}
-    <img src="{{ vich_uploader_asset(gite,'imageFile') }}" class="card-img-top" alt="..." style="width: 40%; height:auto;">
+                <img src="{{ vich_uploader_asset(gite,'imageFile') }}" class="card-img-top" alt="..." style="width: 40%; height:auto;">
+    {% else %}
+                <img src="images\gites\download.jpg" class="card-img-top" alt="">
     {% endif %}  
 </div>
 <div class="row">
@@ -36,6 +38,17 @@
                     <td>{{gite.nbBed}} lit(s)</td>
                 </tr>
                 <tr>
+                    <th>Animaux acceptés</th>
+                    <td>
+                        {% if (gite.animals) is same as (true) %}
+                        <p>Animaux acceptés</p>
+                        <p>Supplément de {{ gite.priceAnimals}} €</p>
+                        {% else %}
+                        <p>Animaux refusés</p>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
                     <th>Equipements</th>
                     <td>
                         {% for eq in gite.equipements %}
@@ -51,9 +64,25 @@
                     <th>Tarif haute saison</th>
                     <td>{{gite.priceHightSeason}} €</td>
                 </tr>
-            
+
             </tbody>
         </table>
+    
+        <article class="row">
+        <div class="row">
+            <button class="btn btn-success col-1 mt-3" id="contact">Contact</button>
+        </div>
+        <div class="col-6" id="contactForm">
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+            {{ form_end(form) }}
+
+            <div></article>
+        
     </div>
 </div>
 {% endblock %}
+
+
+        

@@ -1,3 +1,13 @@
-/* body {
+body {
+
+    background-color: lightgrey;
     
-} */
+    
+}
+
+#contactForm {
+    display:none;
+    margin:5% auto;
+    margin-top: 1%;
+   
+}
